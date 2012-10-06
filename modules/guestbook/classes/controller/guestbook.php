@@ -11,31 +11,51 @@ class Controller_Guestbook extends Page {
 		
 	$messages = $guestbook->order_by('created','DESC')->limit($pagination->items_per_page)->offset($pagination->offset)->find_all();
 
-    $this->template->content = View::factory('/guestbook/main')
+    $this->template->content = View::factory('guestbook/main')
 		->bind('messages',$messages)
 		->bind('pagination',$pagination);
+	$this->template->content_sidebar = View::factory('guestbook/sidebar1');
 	}
 	
 	public function action_add()
 	{
-	$this->title = 'Äîáàâëåíèå Îáúÿâëåíèÿ';	
+	$this->title = 'Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ ÐžÐ±ÑŠÑÐ²Ð»ÐµÐ½Ð¸Ñ';	
 	
 	$guestbook=ORM::factory('guestbook');
 	
 		if ($_POST) {
-		$data = Arr::extract($_POST, array('name', 'content'));
+		$data = Arr::extract($_POST, array('name', 'content','captcha'));
 		$data = Arr::map('HTML::chars', $data);
-	
-		$data = Validation::factory($data)->rule('name' , 'not_empty')
-										  ->rule('name' , 'min_length', array(':value', 2))
-										  ->rule('name' , 'max_length', array(':value', 64))
-										  ->rule('content' , 'not_empty')
-										  ->rule('content' , 'min_length', array(':value', 4))
-										  ->rule('content' , 'max_length', array(':value', 1024));
+	    
+		
+			if (!$this->user) {
+			$data = Validation::factory($data)->rule('name' , 'not_empty')
+											  ->rule('name' , 'min_length', array(':value', 2))
+										      ->rule('name' , 'max_length', array(':value', 64))
+											  ->rule('captcha' , 'Model_User::captcha_valid')
+											  ->rule('name' , 'Model_User::login_valid')
+											  ->rule('name' , 'Model_Guestbook::unique_key')
+											  ->rule('content' , 'not_empty')
+										      ->rule('content' , 'min_length', array(':value', 4))
+										      ->rule('content' , 'max_length', array(':value', 1024))
+											  ->rule('captcha' , 'not_empty');
+			} else {
+			$data = Validation::factory($data)->rule('content' , 'not_empty')
+										      ->rule('content' , 'min_length', array(':value', 4))
+										      ->rule('content' , 'max_length', array(':value', 1024));
+			}
+		
 			if ($data->check()) {
-				$guestbook->name=$data['name'];
-				$guestbook->content=$data['content'];
-				$guestbook->created=time();
+				if (!$this->user) {
+					$guestbook->name=$data['name'];
+					$guestbook->content=$data['content'];
+					$guestbook->created=time();
+				} else {
+					$guestbook->name=$this->user->username;
+					$guestbook->content=$data['content'];
+					$guestbook->created=time();
+				}
+				
 				$guestbook->save();
 			
 			Request::initial()->redirect('/guestbook/');
@@ -53,7 +73,7 @@ class Controller_Guestbook extends Page {
 	$guestbook=ORM::factory('guestbook',$id);
 	
 		if(!$guestbook->loaded()){
-			throw new HTTP_Exception_404('Äàííîãî ñîîáùåíèÿ íåò');
+			throw new HTTP_Exception_404('Ð”Ð°Ð½Ð½Ð¾Ð³Ð¾ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ñ Ð½ÐµÑ‚');
 		}
 			if(!Auth::instance()->logged_in('admin')){
 				Request::initial()->redirect('/guestbook/');
