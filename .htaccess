@@ -1,3 +1,6 @@
+# Error level
+SetEnv KOHANA_ENV production
+
 # Turn on URL rewriting
 RewriteEngine On
 

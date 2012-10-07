@@ -18,48 +18,50 @@
  </head> 
  <body>
  <div id="container">
-  <header>
-  <div id="header">	
+  <header id="header">	
 		<h1>PEGAS <span>CMS</span></h1>
-		<p>Based on framework Kohana 3.2</p>		
-		<div id="topmenu">
-		<ul>
-			<li><?php echo HTML::anchor('/#', 'Главная'); ?></li>	
-			<li><?php echo HTML::anchor('/about/', 'О Pegas CMS'); ?></li>	
-		</ul>	
-		</div>
-
-  </div>
+		<p>Based on framework Kohana 3.2</p>	
+		<?php echo View::factory('/main/topmenu');  ?>
   </header>
  
- <div id="contentcontainer">
-		
-		<div id="content">
+	<?php if (!$fullcontent) { ?>
 	
-		<!-- ### Post Entry Begin ###  -->
-		
-		<div class="post">
+		<div id="post">
 		<?php 
 		echo View::factory('/main/error'); 
 		echo View::factory('/main/message'); 
 		if(!empty($content))echo $content; 
 		?>
 		</div>
+ 
+	<?php } else { ?>
+			<div id="content">
 		
-		</div>
-
-		<!-- ### Sidebar Begin ### -->
+				<div id="post">
+				<?php 
+				echo View::factory('/main/error'); 
+				echo View::factory('/main/message'); 
+				if(!empty($content))echo $content; 
+				?>
+				</div>
 		
-		<?php echo View::factory('/main/sidebar'); ?>
-		
-		<!-- ### Sidebar End ### -->
-
-	</div>
- </div>
-  <footer>
-  <div id="footer">
-    &copy; Pegas CMS 2011-<?php echo date('Y'); ?> г
-  </div>
+			</div>
+			
+			<div id="sidebar">
+			<?php 
+			if(empty($sidebarcontent)) { 
+			echo View::factory('/main/sidebar'); 
+			} else {
+			echo $sidebarcontent;
+			}
+			?>
+			</div>
+	<?php } ?>
+	
+  <footer id="footer">
+	&copy; <?php echo HTML::anchor('/#', 'Pegas CMS'); ?> 2011-<?php echo date('Y'); ?> г
   </footer>
- </body> 
+ 
+</div>
+</body> 
 </html>

@@ -10,11 +10,11 @@ class Controller_Guestbook extends Page {
 	$pagination = Pagination::factory(array('total_items' => $messages_count));
 		
 	$messages = $guestbook->order_by('created','DESC')->limit($pagination->items_per_page)->offset($pagination->offset)->find_all();
-
-    $this->template->content = View::factory('guestbook/main')
+	
+    $this->template->content=View::factory('guestbook/main')
 		->bind('messages',$messages)
 		->bind('pagination',$pagination);
-	$this->template->content_sidebar = View::factory('guestbook/sidebar1');
+	$this->template->sidebarcontent=View::factory('guestbook/sidebar');
 	}
 	
 	public function action_add()

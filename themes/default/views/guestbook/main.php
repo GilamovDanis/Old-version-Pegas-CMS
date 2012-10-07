@@ -1,20 +1,20 @@
-<div id="content">
-<div class="content-title">Гостевая книга</div>
+<h2>Гостевая книга</h2>
+
 <div class="links">
 <?php echo HTML::image('themes/default/icons/refresh.png', array('alt' => 'img','style'=>'vertical-align:middle')); ?> <?php echo HTML::anchor('/guestbook/', 'Обновить'); ?>
 </div>
 
-<table class="post">
+<table>
 	<?php foreach ($messages as $message) { ?>
 	<?php if($message->id%2==0) { ?>
 	<tr class="post1">
 	<?php } else { ?>
 	<tr class="post2">
 	<?php } ?>
-		<td width="54">
+		<td width="55">
 		<?php echo HTML::image('themes/default/icons/ava.png', array('alt' => 'Аватар')) ?>
 		</td>
-		<td width="520">
+		<td width="615">
 		<div class="post_title">
 		<b><?php echo $message->name; ?></b> - <?php echo Date::timef($message->created)?>
 		</div>
@@ -30,4 +30,3 @@
 </table>
 <?php echo $pagination ?> <br />
 <?php echo View::factory('/guestbook/add'); ?>
-</div>

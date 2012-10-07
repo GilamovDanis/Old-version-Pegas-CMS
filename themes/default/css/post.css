@@ -1,3 +1,22 @@
+#post {
+padding-top:10px;
+}
+
+#post h2, #post h2 a, #post h2 a:visited, #post h2 a:active {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	text-decoration: none;
+	font-weight: bold;
+	color: #7f0000;
+	margin: 0px;
+	padding-bottom: 5px;
+}
+
+#post h2 a:hover {
+	color: #7f0000; 
+	text-decoration: underline;
+}
+
 .post_error {
 padding:3px;
 font-size:15px;
@@ -24,12 +43,11 @@ border-top: 1px dotted #59A84A;
 padding-left:5px;
 }
 
-.post {}
-.post_1 {
+.post1 {
 padding:3px;
 background: #F2F8F9;
 }
-.post_2 {
+.post2 {
 padding:3px;
 background: #E6ECED;
 

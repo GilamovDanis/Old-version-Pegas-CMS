@@ -30,6 +30,8 @@ abstract class Page extends Controller_Template {
     parent::before();
 	
 	$this->template->styles = array('main','form','post');
+	$this->template->fullcontent=true;
+	
 	//$this->template->scripts = '';
 	
 	
