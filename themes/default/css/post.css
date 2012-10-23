@@ -1,5 +1,5 @@
 #post {
-padding-top:10px;
+padding-top:8px;
 }
 
 #post h2, #post h2 a, #post h2 a:visited, #post h2 a:active {
@@ -9,7 +9,6 @@ padding-top:10px;
 	font-weight: bold;
 	color: #7f0000;
 	margin: 0px;
-	padding-bottom: 5px;
 }
 
 #post h2 a:hover {
@@ -68,4 +67,7 @@ blockquote {
 	border-left: 5px solid #e8e8e8;
 }
 
-.main_menu {}
+.main_menu a {
+color: #000;
+padding: 2px;
+}

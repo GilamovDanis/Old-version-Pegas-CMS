@@ -7,5 +7,5 @@
 <?php echo Form::label('save', 'Запомнить меня') ?>
 <?php echo Form::checkbox('save',1,1)?> <br />
 <?php echo Form::submit('register','Войти')?> <br /> <br />
-&raquo; <?php echo HTML::anchor('/registration', 'Регистрация')?>
+&raquo; <?php echo HTML::anchor('auth/registration', 'Регистрация')?>
 <?php echo Form::close()?>

@@ -4,7 +4,7 @@ class Controller_About extends Page {
 
 	public function action_index()
 	{   
-	    $this->title = 'О Pegas CMS';
+	    $this->template->title = 'О Pegas CMS';
         $this->template->content = View::factory('/pages/about');
 	}
 

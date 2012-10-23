@@ -1,4 +1,4 @@
-<h2>Гостевая книга</h2>
+<h2>Гостевая книга</h2> <br />
 
 <div class="links">
 <?php echo HTML::image('themes/default/icons/refresh.png', array('alt' => 'img','style'=>'vertical-align:middle')); ?> <?php echo HTML::anchor('/guestbook/', 'Обновить'); ?>
@@ -16,10 +16,10 @@
 		</td>
 		<td width="615">
 		<div class="post_title">
-		<b><?php echo $message->name; ?></b> - <?php echo Date::timef($message->created)?>
+		<b><?php echo $message->username; ?></b> - <?php echo Date::timef($message->created)?>
 		</div>
 		<div class="post_content">
-		<?php echo $message->content ?>
+		<?php echo Text::auto_p($message->content) ?>
 		</div>
 			<?php if(Auth::instance()->logged_in('admin')) { ?>
 			<?php echo HTML::anchor('/guestbook/delete/'.$message->id, ' [delete]'); ?>

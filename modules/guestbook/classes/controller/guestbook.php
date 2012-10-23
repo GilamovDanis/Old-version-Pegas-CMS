@@ -19,7 +19,7 @@ class Controller_Guestbook extends Page {
 	
 	public function action_add()
 	{
-	$this->title = 'Добавление Объявления';	
+	$this->template->title = 'Добавление сообщения';	
 	
 	$guestbook=ORM::factory('guestbook');
 	
@@ -47,11 +47,11 @@ class Controller_Guestbook extends Page {
 		
 			if ($data->check()) {
 				if (!$this->user) {
-					$guestbook->name=$data['name'];
+					$guestbook->username=$data['name'];
 					$guestbook->content=$data['content'];
 					$guestbook->created=time();
 				} else {
-					$guestbook->name=$this->user->username;
+					$guestbook->username=$this->user->username;
 					$guestbook->content=$data['content'];
 					$guestbook->created=time();
 				}

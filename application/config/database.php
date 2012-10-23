@@ -22,7 +22,7 @@ return array
 			'database'   => 'kohanaf',
 			'username'   => 'kohanaf',
 			'password'   => 'kohanaf',
-			'persistent' => 'kohanaf',
+			'persistent' => TRUE,
 		),
 		'table_prefix' => '',
 		'charset'      => 'utf8',

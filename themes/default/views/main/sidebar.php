@@ -11,6 +11,7 @@ if ($user) {
 		
 <h2>Меню</h2>
 	<div class="main_menu">
+	<?php echo HTML::image('themes/default/icons/news.png', array('style'=>'vertical-align: middle;'));  echo HTML::anchor('/news/', ' Новости сайта'); ?> <br />
 	<?php echo HTML::image('themes/default/icons/guestbook.png', array('style'=>'vertical-align: middle;'));  echo HTML::anchor('/guestbook/', ' Гостевая книга'); ?> <br />
 	</div>
 </div>

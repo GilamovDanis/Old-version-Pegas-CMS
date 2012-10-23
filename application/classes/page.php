@@ -1,14 +1,10 @@
 <?php defined('SYSPATH') or die('No direct script access.'); 
  
 abstract class Page extends Controller_Template {  
+
     public $template = 'default';
-	public $error=array();
-	public $message=array();
     public $main_config;
 	public $session;
-	public $title;
-	public $keywords;
-	public $description;
 	public $auth;
 	public $user;
  
@@ -29,12 +25,13 @@ abstract class Page extends Controller_Template {
     Kohana::add_path('themes/'.$this->main_config->get('web_theme').'/');
     parent::before();
 	
-	$this->template->styles = array('main','form','post');
-	$this->template->fullcontent=true;
+	$this->template->styles=array('main','form','post');
+	$this->template->error=array();
+	$this->template->message=array();
+	
+	$this->template->fullcontent=false;
 	
 	//$this->template->scripts = '';
-	
-	
     }
 	
 	public function error($error) {
@@ -43,34 +40,31 @@ abstract class Page extends Controller_Template {
 	    if (is_array($errors)) {
 	    return self::error($errors);
 	    }
-	   $this->error[]=$errors;
+	   $this->template->error[]=$errors;
 	   }
 	  } else {
-	  return $this->error[]=$error;
+	  return $this->template->error[]=$error;
 	  }
 	}
 	
 	public function message($message) {
 	  if (is_array($message)) {
 	   foreach ($message as $messages) {
-	   $this->message[]=$messages;
+	   $this->template->message[]=$messages;
 	   }
 	  } else {
-	  return $this->message[]=$message;
+	  return $this->template->message[]=$message;
 	  }
 	}
 	
 	public function after()
 	{
 	View::set_global(array(
-    'title' => !isset($this->title)?$this->main_config->get('title'):$this->title,
-	'keywords' => !isset($this->keywords)?$this->main_config->get('keywords'):$this->keywords,
-    'description' => !isset($this->description)?$this->main_config->get('description'):$this->description,
+    'title' => !isset($this->template->title)?$this->main_config->get('title'):$this->template->title,
+	'keywords' => !isset($this->template->keywords)?$this->main_config->get('keywords'):$this->template->keywords,
+    'description' => !isset($this->template->description)?$this->main_config->get('description'):$this->template->description,
 	'session' => $this->session,
 	'user' => $this->user,
-	'error' => $this->error,
-	'message' => $this->message,
-	'view_captcha' => Captcha::instance()->render()
     ));
 	
 	parent::after();

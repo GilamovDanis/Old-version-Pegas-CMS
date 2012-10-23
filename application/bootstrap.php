@@ -22,7 +22,7 @@ else
  * @see  http://kohanaframework.org/guide/using.configuration
  * @see  http://php.net/timezones
  */
-date_default_timezone_set('America/Chicago');
+date_default_timezone_set('Europe/Moscow');
 
 /**
  * Set the default locale.
@@ -105,14 +105,15 @@ Cookie::$salt = '3saddsaasdasd123dasd';
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
 Kohana::modules(array(
-    'captcha'       => MODPATH.'captcha',       // Basic authentication
-	'auth'       => MODPATH.'auth',       // Basic authentication
-	'cache'      => MODPATH.'cache',      // Caching with multiple backends
-	'database'   => MODPATH.'database',   // Database access
-	'image'      => MODPATH.'image',      // Image manipulation
-	'orm'        => MODPATH.'orm',        // Object Relationship Mapping
-	'pagination'    => MODPATH.'pagination',        // Pagination
-	'guestbook'    => MODPATH.'guestbook',        // Guestbook
+    'captcha'       => MODPATH.'captcha',       // Captcha
+	'auth'       	=> MODPATH.'auth',          // Basic authentication
+	'cache'      	=> MODPATH.'cache',     	// Caching with multiple backends
+	'database'   	=> MODPATH.'database',   	// Database access
+	'image'      	=> MODPATH.'image',      	// Image manipulation
+	'orm'       	=> MODPATH.'orm',        	// Object Relationship Mapping
+	'pagination'	=> MODPATH.'pagination',    // Pagination
+	'guestbook'     => MODPATH.'guestbook',     // Guestbook
+	'news'    		=> MODPATH.'news',        	// News
 	));
 
 /**

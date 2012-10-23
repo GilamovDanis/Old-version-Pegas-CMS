@@ -24,7 +24,7 @@
 		<?php echo View::factory('/main/topmenu');  ?>
   </header>
  
-	<?php if (!$fullcontent) { ?>
+	<?php if ($fullcontent) { ?>
 	
 		<div id="post">
 		<?php 
@@ -39,8 +39,7 @@
 		
 				<div id="post">
 				<?php 
-				echo View::factory('/main/error'); 
-				echo View::factory('/main/message'); 
+			
 				if(!empty($content))echo $content; 
 				?>
 				</div>

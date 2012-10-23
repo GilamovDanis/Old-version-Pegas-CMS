@@ -10,7 +10,7 @@
 <?php echo Form::label('name', 'Введите ваше имя (max 64)') ?><br />
 <?php echo Form::input('name', HTML::chars(Arr::get($_POST, 'name')))?> <br />
 <?php echo Form::label('captcha', 'Введите символы с картинки')?> <br />
-<?php echo $view_captcha; ?> <br />
+<?php echo Captcha::instance()->render(); ?> <br />
 <?php echo Form::input('captcha', FALSE,array('size'=>4))?> <br />
 <?php } ?>
 <?php echo Form::label('content', 'Введите ваше сообщение (max 1024)') ?>  <br />
