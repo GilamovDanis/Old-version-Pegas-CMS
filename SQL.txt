@@ -18,6 +18,13 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Table structure for table `guestbooks`
 --
+CREATE TABLE IF NOT EXISTS `news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` char(64) NOT NULL,
+  `content` varchar(1024) NOT NULL,
+  `created` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `guestbooks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
