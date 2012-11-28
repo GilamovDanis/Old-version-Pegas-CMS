@@ -28,11 +28,12 @@ CREATE TABLE IF NOT EXISTS `news` (
 
 CREATE TABLE IF NOT EXISTS `guestbooks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` char(64) NOT NULL,
+  `username` char(64) NOT NULL,
   `content` varchar(1024) NOT NULL,
   `created` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
+
 
 --
 -- Table structure for table `roles`

@@ -4,6 +4,11 @@ class Controller_Guestbook extends Page {
 
 	public function action_index()
 	{   
+	/**
+	* Вывод сообщений из гостевой книги
+	**/
+	$this->template->title = 'Гостевая книга';
+	
 	$guestbook=ORM::factory('guestbook');
     
 	$messages_count=$guestbook->count_all();
@@ -17,8 +22,12 @@ class Controller_Guestbook extends Page {
 	$this->template->sidebarcontent=View::factory('guestbook/sidebar');
 	}
 	
+	
 	public function action_add()
 	{
+	/**
+	* Добавления сообщений
+	**/
 	$this->template->title = 'Добавление сообщения';	
 	
 	$guestbook=ORM::factory('guestbook');
@@ -69,6 +78,9 @@ class Controller_Guestbook extends Page {
 	
 	public function action_delete()
 	{
+	/**
+	* Удаление сообщений
+	**/
 	$id = $this->request->param('id');
 	$guestbook=ORM::factory('guestbook',$id);
 	
