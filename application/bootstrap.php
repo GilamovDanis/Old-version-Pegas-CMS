@@ -3,17 +3,17 @@
 // -- Environment setup --------------------------------------------------------
 
 // Load the core Kohana class
-require SYSPATH.'classes/kohana/core'.EXT;
+require SYSPATH.'classes/Kohana/Core'.EXT;
 
-if (is_file(APPPATH.'classes/kohana'.EXT))
+if (is_file(APPPATH.'classes/Kohana'.EXT))
 {
 	// Application extends the core
-	require APPPATH.'classes/kohana'.EXT;
+	require APPPATH.'classes/Kohana'.EXT;
 }
 else
 {
 	// Load empty core extension
-	require SYSPATH.'classes/kohana'.EXT;
+	require SYSPATH.'classes/Kohana'.EXT;
 }
 
 /**
@@ -40,6 +40,7 @@ setlocale(LC_ALL, 'en_US.utf-8');
  */
 spl_autoload_register(array('Kohana', 'auto_load'));
 
+
 /**
  * Enable the Kohana auto-loader for unserialization.
  *
@@ -47,6 +48,8 @@ spl_autoload_register(array('Kohana', 'auto_load'));
  * @see  http://php.net/manual/var.configuration.php#unserialize-callback-func
  */
 ini_set('unserialize_callback_func', 'spl_autoload_call');
+
+
 
 // -- Configuration and initialization -----------------------------------------
 
@@ -82,7 +85,7 @@ if (isset($_SERVER['KOHANA_ENV']))
 Kohana::init(array(
 	'base_url'   => '/',
 	'index_file' => FALSE,
-	'errors' => TRUE
+	'errors'     => FALSE
 ));
 
 /**
@@ -120,11 +123,6 @@ Kohana::modules(array(
  * Set the routes. Each route must have a minimum of a name, a URI and a set of
  * defaults for the URI.
  */
-Route::set('error', 'error/<action>(/<message>)', array('action' => '[0-9]++', 'message' => '.+'))
-    ->defaults(array(
-      'controller'  => 'error'
-    ));
-	
 Route::set('apanel', 'apanel(/<controller>(/<action>(/<id>)))')
             ->defaults(array(
             'directory'  => 'apanel',
