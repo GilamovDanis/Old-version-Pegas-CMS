@@ -6,21 +6,16 @@
   <meta name="keywords" content="<?php echo $keywords ?>" />
   <meta name="description" content="<?php echo $description ?>" />
   <?php 
-  foreach($styles as $style) {
-   echo HTML::style('themes/default/css/'.$style.'.css');
-  } 
-  /*
-  foreach($scripts as $script) {
-   echo HTML::script('themes/default/css/'.$script.'.js');
-  } 
-  */
+   echo HTML::style('themes/default/css/main.css');
+   echo HTML::style('themes/default/css/form.css');
+   echo HTML::style('themes/default/css/post.css');
   ?>
  </head> 
  <body>
  <div id="container">
   <header id="header">	
 		<h1>PEGAS <span>CMS</span></h1>
-		<p>Based on framework Kohana 3.2</p>	
+		<p>Based on framework Kohana 3.3</p>	
 		<?php echo View::factory('/main/topmenu');  ?>
   </header>
  
