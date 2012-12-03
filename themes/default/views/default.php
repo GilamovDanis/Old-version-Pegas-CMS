@@ -15,16 +15,15 @@
  <div id="container">
   <header id="header">	
 		<h1>PEGAS <span>CMS</span></h1>
-		<p>Based on framework Kohana 3.3</p>	
+		<p>Based on <?php echo Kohana::version() ?></p>	
 		<?php echo View::factory('/main/topmenu');  ?>
   </header>
- 
 	<?php if ($fullcontent) { ?>
 	
 		<div id="post">
 		<?php 
-		echo View::factory('/main/error'); 
-		echo View::factory('/main/message'); 
+		echo View::factory('/main/error');
+		echo View::factory('/main/message');
 		if(!empty($content))echo $content; 
 		?>
 		</div>
@@ -34,7 +33,8 @@
 		
 				<div id="post">
 				<?php 
-			
+				echo View::factory('/main/error'); 
+				echo View::factory('/main/message');
 				if(!empty($content))echo $content; 
 				?>
 				</div>

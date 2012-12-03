@@ -18,7 +18,7 @@ class Controller_Auth extends Controller_Page {
                  if($this->auth->login($data['username'], $data['password'], (bool)$data['save'])) {			
 					HTTP::redirect(URL::site());
 				 } else {
-				    self::error('Ошибка авторизации');
+				    $this->error='Пара Логин и Пароль неверны';
 				 }
 			 }
 		}
@@ -33,7 +33,7 @@ class Controller_Auth extends Controller_Page {
 	$data = array();
 	
 	     if ($_POST) {
-		 $user = ORM::factory('user');
+		 $user = ORM::factory('User');
 		 
 		 $data = Arr::extract($_POST, array('username', 'email', 'password', 'confirm_password', 'captcha'));
 		 
@@ -55,28 +55,28 @@ class Controller_Auth extends Controller_Page {
 						  ->rule('username' , 'Model_User::login_valid');
          try {
          $user->save($extra_validation);
-         $user->add('roles', ORM::factory('role')->where('name', '=', 'login')->find());
+         $user->add('roles', ORM::factory('Role')->where('name', '=', 'login')->find());
            
-		 $this->auth->login($data['username'], $data['password'], TRUE);
+		 $this->auth->login($data['username'], $data['password']);
 		  
 		 $this->template->fullcontent=true;
-         $this->template->content =  View::factory('auth/registrationok',$data);
+         $this->template->content=View::factory('auth/registrationok',$data);
 		 
 		
 		 return TRUE;
          } catch (ORM_Validation_Exception $e) {
-           self::error($e->errors('validation')); 		   
+           $this->error=$e->errors('validation'); 
          }
 		}
 	
-    $this->template->content =  View::factory('auth/registration');
+    $this->template->content=View::factory('auth/registration');
 	$this->template->sidebarcontent=View::factory('auth/sidebarregistration');
 	}
 	
 	public function action_logout()
 	{   
 	$this->auth->logout();
-	Request::initial()->redirect(URL::site());
+	HTTP::redirect(URL::site());
 	}
 
  

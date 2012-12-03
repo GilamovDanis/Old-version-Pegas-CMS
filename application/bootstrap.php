@@ -120,6 +120,12 @@ Kohana::modules(array(
 	'image'      => MODPATH.'image',      // Image manipulation
 	'minion'     => MODPATH.'minion',     // CLI Tasks
 	'orm'        => MODPATH.'orm',        // Object Relationship Mapping
+	'pagination' => MODPATH.'pagination',        // Pagination
+	
+	/**
+	* My Modules
+	**/
+	'guestbook'  => MODPATH.'guestbook',        // Guestbook
 	));
 
 /**
