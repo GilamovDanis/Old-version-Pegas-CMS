@@ -4,7 +4,7 @@ class Model_Guestbook extends ORM {
 
 	public static function unique_key($value)
 	{
-		return !(bool) DB::select(array('COUNT("*")', 'total_users'))
+		return !(bool) DB::select(array(DB::expr('COUNT(*)'), 'total_users'))
 			->from('users')
 			->where('username', '=', $value)
 			->execute()

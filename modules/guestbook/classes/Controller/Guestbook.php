@@ -7,7 +7,7 @@ class Controller_Guestbook extends Controller_Page {
 	/**
 	* Вывод сообщений из гостевой книги
 	**/
-	$this->template->title = 'Гостевая книга';
+	$this->template->title ='Гостевая книга';
 	
 	$guestbook=ORM::factory('Guestbook');
     
