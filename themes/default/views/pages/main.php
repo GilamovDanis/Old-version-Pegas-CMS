@@ -22,3 +22,4 @@
 &raquo; <?php echo HTML::anchor('http://gilamov.ru', 'Мой блог - Gilamov.ru'); ?> <br />
 &raquo; <?php echo HTML::anchor('http://gilamov.ru/kohana', 'Раздел в блоге о Kohana'); ?> <br />
 </p>
+<?php echo Widget::load('ListGuestbook');  ?>
