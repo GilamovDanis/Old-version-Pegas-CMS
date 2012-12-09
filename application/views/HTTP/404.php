@@ -12,12 +12,7 @@
   <header id="header">	
 		<h1>PEGAS <span>CMS</span></h1>
 		<p>Based on <?php echo Kohana::version() ?></p>	
-		<div id="topmenu">
-		<ul>
-			<li><?php echo HTML::anchor('/#', 'Главная'); ?></li>	
-			<li><?php echo HTML::anchor('/about/', 'О Pegas CMS'); ?></li>	
-		</ul>	
-		</div>
+		<?php echo Widget::load('TopMenu'); ?>
   </header>
 
   <div id="post">

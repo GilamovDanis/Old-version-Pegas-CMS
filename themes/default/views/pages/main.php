@@ -1,3 +1,4 @@
+<?php echo Widget::load('ListNews');  ?>
 <h2>Написание cms на базе kohana 3.3</h2>
 <p>В разработке...</p>
 <?php echo HTML::image('media/images/pegas.gif', array('alt' => '404','class'=>'alignleft')) ?> 

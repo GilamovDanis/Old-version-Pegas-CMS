@@ -16,7 +16,7 @@
   <header id="header">	
 		<h1>PEGAS <span>CMS</span></h1>
 		<p>Based on <?php echo Kohana::version() ?></p>	
-		<?php echo View::factory('/main/topmenu');  ?>
+		<?php echo Widget::load('TopMenu'); ?>
   </header>
 	<?php if ($fullcontent) { ?>
 	
@@ -44,7 +44,7 @@
 			<div id="sidebar">
 			<?php 
 			if(empty($sidebarcontent)) { 
-			echo View::factory('/main/sidebar'); 
+			echo Widget::load('RightSidebar'); 
 			} else {
 			echo $sidebarcontent;
 			}
