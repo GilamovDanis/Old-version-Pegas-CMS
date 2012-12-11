@@ -1,0 +1,67 @@
+<?php defined('SYSPATH') OR die('No direct script access.'); ?>
+
+2012-12-04 20:25:47 --- CRITICAL: Database_Exception [ 1054 ]: Unknown column 'COUNT("*")' in 'field list' [ SELECT `COUNT("*")` AS `total_users` FROM `users` WHERE `username` = 'tesra' ] ~ MODPATH\database\classes\Kohana\Database\MySQL.php [ 194 ] in P:\home\localhost\Pegas-CMS\modules\database\classes\Kohana\Database\Query.php:251
+2012-12-04 20:25:47 --- DEBUG: #0 P:\home\localhost\Pegas-CMS\modules\database\classes\Kohana\Database\Query.php(251): Kohana_Database_MySQL->query(1, 'SELECT `COUNT("...', false, Array)
+#1 P:\home\localhost\Pegas-CMS\modules\guestbook\classes\Model\Guestbook.php(10): Kohana_Database_Query->execute()
+#2 [internal function]: Model_Guestbook::unique_key('tesra')
+#3 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Validation.php(410): ReflectionMethod->invokeArgs(NULL, Array)
+#4 P:\home\localhost\Pegas-CMS\modules\guestbook\classes\Controller\Guestbook.php(57): Kohana_Validation->check()
+#5 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Controller.php(84): Controller_Guestbook->action_add()
+#6 [internal function]: Kohana_Controller->execute()
+#7 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Guestbook))
+#8 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 P:\home\localhost\Pegas-CMS\index.php(118): Kohana_Request->execute()
+#11 {main} in P:\home\localhost\Pegas-CMS\modules\database\classes\Kohana\Database\Query.php:251
+2012-12-04 20:29:32 --- CRITICAL: Database_Exception [ 1054 ]: Unknown column 'COUNT("*")' in 'field list' [ SELECT `COUNT("*")` AS `total_users` FROM `users` WHERE `username` = 'tesra' ] ~ MODPATH\database\classes\Kohana\Database\MySQL.php [ 194 ] in P:\home\localhost\Pegas-CMS\modules\database\classes\Kohana\Database\Query.php:251
+2012-12-04 20:29:32 --- DEBUG: #0 P:\home\localhost\Pegas-CMS\modules\database\classes\Kohana\Database\Query.php(251): Kohana_Database_MySQL->query(1, 'SELECT `COUNT("...', false, Array)
+#1 P:\home\localhost\Pegas-CMS\modules\guestbook\classes\Model\Guestbook.php(10): Kohana_Database_Query->execute()
+#2 [internal function]: Model_Guestbook::unique_key('tesra')
+#3 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Validation.php(410): ReflectionMethod->invokeArgs(NULL, Array)
+#4 P:\home\localhost\Pegas-CMS\modules\guestbook\classes\Controller\Guestbook.php(57): Kohana_Validation->check()
+#5 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Controller.php(84): Controller_Guestbook->action_add()
+#6 [internal function]: Kohana_Controller->execute()
+#7 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Guestbook))
+#8 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 P:\home\localhost\Pegas-CMS\index.php(118): Kohana_Request->execute()
+#11 {main} in P:\home\localhost\Pegas-CMS\modules\database\classes\Kohana\Database\Query.php:251
+2012-12-04 20:29:33 --- CRITICAL: Database_Exception [ 1054 ]: Unknown column 'COUNT("*")' in 'field list' [ SELECT `COUNT("*")` AS `total_users` FROM `users` WHERE `username` = 'tesra' ] ~ MODPATH\database\classes\Kohana\Database\MySQL.php [ 194 ] in P:\home\localhost\Pegas-CMS\modules\database\classes\Kohana\Database\Query.php:251
+2012-12-04 20:29:33 --- DEBUG: #0 P:\home\localhost\Pegas-CMS\modules\database\classes\Kohana\Database\Query.php(251): Kohana_Database_MySQL->query(1, 'SELECT `COUNT("...', false, Array)
+#1 P:\home\localhost\Pegas-CMS\modules\guestbook\classes\Model\Guestbook.php(10): Kohana_Database_Query->execute()
+#2 [internal function]: Model_Guestbook::unique_key('tesra')
+#3 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Validation.php(410): ReflectionMethod->invokeArgs(NULL, Array)
+#4 P:\home\localhost\Pegas-CMS\modules\guestbook\classes\Controller\Guestbook.php(57): Kohana_Validation->check()
+#5 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Controller.php(84): Controller_Guestbook->action_add()
+#6 [internal function]: Kohana_Controller->execute()
+#7 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Guestbook))
+#8 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 P:\home\localhost\Pegas-CMS\index.php(118): Kohana_Request->execute()
+#11 {main} in P:\home\localhost\Pegas-CMS\modules\database\classes\Kohana\Database\Query.php:251
+2012-12-04 20:29:34 --- CRITICAL: Database_Exception [ 1054 ]: Unknown column 'COUNT("*")' in 'field list' [ SELECT `COUNT("*")` AS `total_users` FROM `users` WHERE `username` = 'tesra' ] ~ MODPATH\database\classes\Kohana\Database\MySQL.php [ 194 ] in P:\home\localhost\Pegas-CMS\modules\database\classes\Kohana\Database\Query.php:251
+2012-12-04 20:29:34 --- DEBUG: #0 P:\home\localhost\Pegas-CMS\modules\database\classes\Kohana\Database\Query.php(251): Kohana_Database_MySQL->query(1, 'SELECT `COUNT("...', false, Array)
+#1 P:\home\localhost\Pegas-CMS\modules\guestbook\classes\Model\Guestbook.php(10): Kohana_Database_Query->execute()
+#2 [internal function]: Model_Guestbook::unique_key('tesra')
+#3 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Validation.php(410): ReflectionMethod->invokeArgs(NULL, Array)
+#4 P:\home\localhost\Pegas-CMS\modules\guestbook\classes\Controller\Guestbook.php(57): Kohana_Validation->check()
+#5 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Controller.php(84): Controller_Guestbook->action_add()
+#6 [internal function]: Kohana_Controller->execute()
+#7 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Guestbook))
+#8 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 P:\home\localhost\Pegas-CMS\index.php(118): Kohana_Request->execute()
+#11 {main} in P:\home\localhost\Pegas-CMS\modules\database\classes\Kohana\Database\Query.php:251
+2012-12-04 20:29:46 --- CRITICAL: Database_Exception [ 1054 ]: Unknown column 'COUNT("*")' in 'field list' [ SELECT `COUNT("*")` AS `total_users` FROM `users` WHERE `username` = 'Danis92' ] ~ MODPATH\database\classes\Kohana\Database\MySQL.php [ 194 ] in P:\home\localhost\Pegas-CMS\modules\database\classes\Kohana\Database\Query.php:251
+2012-12-04 20:29:46 --- DEBUG: #0 P:\home\localhost\Pegas-CMS\modules\database\classes\Kohana\Database\Query.php(251): Kohana_Database_MySQL->query(1, 'SELECT `COUNT("...', false, Array)
+#1 P:\home\localhost\Pegas-CMS\modules\guestbook\classes\Model\Guestbook.php(10): Kohana_Database_Query->execute()
+#2 [internal function]: Model_Guestbook::unique_key('Danis92')
+#3 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Validation.php(410): ReflectionMethod->invokeArgs(NULL, Array)
+#4 P:\home\localhost\Pegas-CMS\modules\guestbook\classes\Controller\Guestbook.php(57): Kohana_Validation->check()
+#5 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Controller.php(84): Controller_Guestbook->action_add()
+#6 [internal function]: Kohana_Controller->execute()
+#7 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Guestbook))
+#8 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 P:\home\localhost\Pegas-CMS\system\classes\Kohana\Request.php(990): Kohana_Request_Client->execute(Object(Request))
+#10 P:\home\localhost\Pegas-CMS\index.php(118): Kohana_Request->execute()
+#11 {main} in P:\home\localhost\Pegas-CMS\modules\database\classes\Kohana\Database\Query.php:251
