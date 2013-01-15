@@ -1,0 +1,172 @@
+-- phpMyAdmin SQL Dump
+-- version 3.2.3
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Jan 15, 2013 at 10:18 PM
+-- Server version: 5.5.25
+-- PHP Version: 5.3.13
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Database: `kohanaf`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog_categories`
+--
+
+CREATE TABLE IF NOT EXISTS `blog_categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) NOT NULL,
+  `title` char(128) NOT NULL,
+  `content` varchar(1024) NOT NULL,
+  `created` int(11) NOT NULL,
+  `post_count` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog_posts`
+--
+
+CREATE TABLE IF NOT EXISTS `blog_posts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `status` enum('publish','draft','moderation') NOT NULL,
+  `title` char(128) NOT NULL,
+  `content` text NOT NULL,
+  `created` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog_posts_categories`
+--
+
+CREATE TABLE IF NOT EXISTS `blog_posts_categories` (
+  `post_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  KEY `post_id` (`post_id`),
+  KEY `category_id` (`category_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `guestbooks`
+--
+
+CREATE TABLE IF NOT EXISTS `guestbooks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` char(64) NOT NULL,
+  `content` varchar(1024) NOT NULL,
+  `created` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news`
+--
+
+CREATE TABLE IF NOT EXISTS `news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` char(64) NOT NULL,
+  `content` varchar(1024) NOT NULL,
+  `created` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE IF NOT EXISTS `roles` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+INSERT INTO `roles` (`id`, `name`, `description`) VALUES
+(1, 'login', 'Login privileges, granted after account confirmation'),
+(2, 'admin', 'Administrative user, has access to everything.');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles_users`
+--
+
+CREATE TABLE IF NOT EXISTS `roles_users` (
+  `user_id` int(10) unsigned NOT NULL,
+  `role_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`user_id`,`role_id`),
+  KEY `fk_role_id` (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(254) NOT NULL,
+  `username` varchar(32) NOT NULL DEFAULT '',
+  `password` varchar(64) NOT NULL,
+  `logins` int(10) unsigned NOT NULL DEFAULT '0',
+  `last_login` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_username` (`username`),
+  UNIQUE KEY `uniq_email` (`email`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_tokens`
+--
+
+CREATE TABLE IF NOT EXISTS `user_tokens` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned NOT NULL,
+  `user_agent` varchar(40) NOT NULL,
+  `token` varchar(40) NOT NULL,
+  `type` varchar(100) NOT NULL,
+  `created` int(10) unsigned NOT NULL,
+  `expires` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_token` (`token`),
+  KEY `fk_user_id` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `roles_users`
+--
+ALTER TABLE `roles_users`
+  ADD CONSTRAINT `roles_users_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `roles_users_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `user_tokens`
+--
+ALTER TABLE `user_tokens`
+  ADD CONSTRAINT `user_tokens_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
