@@ -1,101 +1,31 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_News extends Controller_Page {
+class Controller_Blog_Post extends Controller_Page {
 
 	public function action_index()
 	{   
 	/**
-	* Вывод новостей
+	* Вывод отдельной статьи
 	**/
-	$this->template->title='Новости';
+	$blog_posts=ORM::factory('Blog_Posts');
+	$blog_categories=ORM::factory('Blog_Categories');
 	
-	$news=ORM::factory('News');
-    
-	$messages_count=$news->count_all();
-	$pagination = Pagination::factory(array('total_items' => $messages_count));
+	$request_category=$this->request->param('category');
+	$request_post=$this->request->param('post');
+	
+	$category=$blog_categories->where('category_url','=',$request_category)->find();
+	$post=$blog_posts->where('post_url','=',$request_post)->find();
+	
+	if (!$category->loaded() || !$post->loaded()) {
+		throw HTTP_Exception::factory(404,'Статья не найдена');
+	} 
+	
+	$this->template->title=$post->title;
 		
-	$messages = $news->order_by('created','DESC')->limit($pagination->items_per_page)->offset($pagination->offset)->find_all();
-	
 	$this->template->fullcontent=true;
-    $this->template->content=View::factory('news/main')
-		->bind('messages',$messages)
-		->bind('pagination',$pagination);
+    $this->template->content=View::factory('blog/post')
+		->bind('category',$category)
+		->bind('post',$post);
 	}
-	
-	public function action_view()
-	{   
-	/**
-	* Вывод одной новости
-	**/
-	$this->template->title='Новости';
-	
-	$id = $this->request->param('id');
-	$news=ORM::factory('News',$id);
-	
-		if(!$news->loaded()){
-			throw HTTP_Exception::factory(404,'Данного новости нет');
-		}
-	
-	
-	$this->template->fullcontent=true;
-    $this->template->content=View::factory('news/viewnews')->bind('news',$news);
-	}
-	
-	
-	public function action_add()
-	{
-	/**
-	* Добавление новостей
-	**/
-	$this->template->title ='Добавление новости';	
-	
-	$news=ORM::factory('News');
-	
-		if ($_POST) {
-		$data = Arr::extract($_POST, array('title', 'content'));
-		$data = Arr::map('HTML::chars', $data);
-	    
-		
-			$data = Validation::factory($data)->rule('title' , 'not_empty')
-											  ->rule('title' , 'min_length', array(':value', 2))
-										      ->rule('title' , 'max_length', array(':value', 64))
-											  ->rule('content' , 'not_empty')
-										      ->rule('content' , 'min_length', array(':value', 4))
-										      ->rule('content' , 'max_length', array(':value', 1024));
-			
-			if ($data->check()) {
-			$news->title=$data['title'];
-			$news->content=$data['content'];
-			$news->created=time();
-				
-			$news->save();
-			
-			HTTP::redirect('/news/');
-			} else {
-				$this->error=$data->errors('news');
-			}
-		}
-	
-	$this->template->fullcontent=true;
-	$this->template->content = View::factory('/news/add');
-	}
-	
-	public function action_delete()
-	{
-	/**
-	* Удаление новостей
-	**/
-	$id = $this->request->param('id');
-	$news=ORM::factory('News',$id);
-	
-		if(!$news->loaded()){
-			throw HTTP_Exception::factory(404,'Данного сообщения нет');
-		}
-			if(!Auth::instance()->logged_in('admin')){
-				HTTP::redirect('/news/');
-			}
-			
-	$news->delete();
-	HTTP::redirect('/news/');
-	}
-} // End News
+
+} // End Blog

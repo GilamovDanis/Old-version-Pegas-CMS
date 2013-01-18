@@ -21,9 +21,10 @@
 		<div class="post_content">
 		<?php echo Text::auto_p($message->content) ?>
 		</div>
-			<?php if(Auth::instance()->logged_in('admin')) { ?>
-			<?php echo HTML::anchor('/guestbook/delete/'.$message->id, ' [delete]'); ?>
-			<?php } ?>
+			<?php
+			if(Auth::instance()->logged_in('admin')) { 
+			echo HTML::anchor('/guestbook/delete/'.$message->id, ' Удалить',array('onclick'=>"return confirm('Вы точно хотите удалить сообщение?')")); 
+			} ?>
 		</td>
 	</tr>
 	<?php } ?>

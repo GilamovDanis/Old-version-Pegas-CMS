@@ -1,101 +1,25 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Controller_News extends Controller_Page {
+class Controller_Blog extends Controller_Page {
 
 	public function action_index()
 	{   
 	/**
-	* Вывод новостей
+	* Вывод статей
 	**/
-	$this->template->title='Новости';
+	$this->template->title='Блоги';
 	
-	$news=ORM::factory('News');
+	$blog_posts=ORM::factory('Blog_Posts');
     
-	$messages_count=$news->count_all();
+	$messages_count=$blog_posts->count_all();
 	$pagination = Pagination::factory(array('total_items' => $messages_count));
 		
-	$messages = $news->order_by('created','DESC')->limit($pagination->items_per_page)->offset($pagination->offset)->find_all();
+	$messages = $blog_posts->where('status','=','publish')->order_by('created','DESC')->limit($pagination->items_per_page)->offset($pagination->offset)->find_all();
 	
 	$this->template->fullcontent=true;
-    $this->template->content=View::factory('news/main')
+    $this->template->content=View::factory('blog/main')
 		->bind('messages',$messages)
 		->bind('pagination',$pagination);
 	}
 	
-	public function action_view()
-	{   
-	/**
-	* Вывод одной новости
-	**/
-	$this->template->title='Новости';
-	
-	$id = $this->request->param('id');
-	$news=ORM::factory('News',$id);
-	
-		if(!$news->loaded()){
-			throw HTTP_Exception::factory(404,'Данного новости нет');
-		}
-	
-	
-	$this->template->fullcontent=true;
-    $this->template->content=View::factory('news/viewnews')->bind('news',$news);
-	}
-	
-	
-	public function action_add()
-	{
-	/**
-	* Добавление новостей
-	**/
-	$this->template->title ='Добавление новости';	
-	
-	$news=ORM::factory('News');
-	
-		if ($_POST) {
-		$data = Arr::extract($_POST, array('title', 'content'));
-		$data = Arr::map('HTML::chars', $data);
-	    
-		
-			$data = Validation::factory($data)->rule('title' , 'not_empty')
-											  ->rule('title' , 'min_length', array(':value', 2))
-										      ->rule('title' , 'max_length', array(':value', 64))
-											  ->rule('content' , 'not_empty')
-										      ->rule('content' , 'min_length', array(':value', 4))
-										      ->rule('content' , 'max_length', array(':value', 1024));
-			
-			if ($data->check()) {
-			$news->title=$data['title'];
-			$news->content=$data['content'];
-			$news->created=time();
-				
-			$news->save();
-			
-			HTTP::redirect('/news/');
-			} else {
-				$this->error=$data->errors('news');
-			}
-		}
-	
-	$this->template->fullcontent=true;
-	$this->template->content = View::factory('/news/add');
-	}
-	
-	public function action_delete()
-	{
-	/**
-	* Удаление новостей
-	**/
-	$id = $this->request->param('id');
-	$news=ORM::factory('News',$id);
-	
-		if(!$news->loaded()){
-			throw HTTP_Exception::factory(404,'Данного сообщения нет');
-		}
-			if(!Auth::instance()->logged_in('admin')){
-				HTTP::redirect('/news/');
-			}
-			
-	$news->delete();
-	HTTP::redirect('/news/');
-	}
-} // End News
+} // End Blog

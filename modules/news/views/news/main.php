@@ -12,7 +12,7 @@
 		</td>
 		<td width="915">
 		<div class="post_title">
-		<b><?php echo $message->title; ?></b> - <?php echo Date::timef($message->created)?>
+		<b><?php echo HTML::anchor('/news/view/'.$message->id, $message->title); ?></b> - <?php echo Date::timef($message->created)?>
 		</div>
 		<div class="post_content">
 		<?php if (UTF8::strlen($message->content)>256) { 
@@ -25,9 +25,6 @@
 			 }
 		?>
 		</div>
-			<?php if(Auth::instance()->logged_in('admin')) { ?>
-			<?php echo HTML::anchor('/news/delete/'.$message->id, ' [delete]'); ?>
-			<?php } ?>
 		</td>
 	</tr>
 	<?php } ?>

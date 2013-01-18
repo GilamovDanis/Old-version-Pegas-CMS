@@ -5,9 +5,9 @@ class Model_Blog_Posts extends ORM {
 	 
 	 protected $_has_many = array(
 		'category' => array(
-			'model' => 'shop_category',
-			'through' => 'shop_item_categories',
-			'foreign_key' => 'item_id',
+			'model' => 'blog_categories',
+			'through' => 'blog_posts_categories',
+			'foreign_key' => 'post_id',
 			'far_key' => 'category_id'
 		),
 	);

@@ -127,6 +127,7 @@ Kohana::modules(array(
 	**/
 	'guestbook'  => MODPATH.'guestbook',  // Guestbook
 	'news'  	 => MODPATH.'news',       // News
+	'blog'  	 => MODPATH.'blog',  	  // Blogs
 	));
 
 /**
