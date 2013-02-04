@@ -24,7 +24,6 @@ class Controller_Auth extends Controller_Page {
 		}
 	
 	$this->template->content=View::factory('auth/main');
-	$this->template->sidebarcontent=View::factory('auth/sidebarauth');
 	}
 	
 	public function action_registration()
@@ -59,7 +58,6 @@ class Controller_Auth extends Controller_Page {
            
 		 $this->auth->login($data['username'], $data['password']);
 		  
-		 $this->template->fullcontent=true;
          $this->template->content=View::factory('auth/registrationok',$data);
 		 
 		
@@ -70,7 +68,6 @@ class Controller_Auth extends Controller_Page {
 		}
 	
     $this->template->content=View::factory('auth/registration');
-	$this->template->sidebarcontent=View::factory('auth/sidebarregistration');
 	}
 	
 	public function action_logout()

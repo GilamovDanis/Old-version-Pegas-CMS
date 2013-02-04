@@ -7,7 +7,16 @@ class Controller_Apanel_Post extends Controller_AdminPage {
 	/**
 	* Добавление статьи
 	**/
+	$this->template->title='Добавление статьи';
 	
+	$blog_categories=ORM::factory('Blog_Categories');
+	
+	
+	$this->template->jscripts[]='/tinymce/tiny_mce';
+	
+	$this->template->content=View::factory('blog/apanel/post/add')
+		->bind('category',$blog_categories);
+	$this->template->sidebarcontent=View::factory('blog/apanel/post/sidebar1');
 	}
 	
 	public function action_delete()

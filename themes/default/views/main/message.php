@@ -1,10 +1,11 @@
+<div class="span12">
 <?php 
 /**
  * Вывод сообщений
 **/
 if (!empty($message)) {
 ?>
-<div class="post_message">
+<div class="alert alert-success">
 <?php
 	if (is_array($message)) {
 		foreach ($message as $messages) {
@@ -25,3 +26,5 @@ if (!empty($message)) {
 
 <?php
 }
+?>
+</div>

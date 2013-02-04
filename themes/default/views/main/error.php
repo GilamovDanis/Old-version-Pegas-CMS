@@ -1,10 +1,11 @@
+<div class="span12">
 <?php 
 /**
  * Вывод ошибок 
 **/
 if (!empty($error)) {
 ?>
-<div class="post_error">
+<div class="alert alert-error">
 <?php
 	if (is_array($error)) {
 		foreach ($error as $errors) {
@@ -25,3 +26,5 @@ if (!empty($error)) {
 
 <?php
 }
+?>
+</div>

@@ -16,6 +16,9 @@ class Controller_Guestbook extends Controller_Page {
 		
 	$messages = $guestbook->order_by('created','DESC')->limit($pagination->items_per_page)->offset($pagination->offset)->find_all();
 	
+	
+	$this->template->jscripts[]='/tinymce/tiny_mce';
+	
     $this->template->content=View::factory('guestbook/main')
 		->bind('messages',$messages)
 		->bind('pagination',$pagination);
@@ -34,7 +37,7 @@ class Controller_Guestbook extends Controller_Page {
 	
 		if ($_POST) {
 		$data = Arr::extract($_POST, array('name', 'content','captcha'));
-		$data = Arr::map('HTML::chars', $data);
+		$data = Arr::map('Security::xss_clean', $data);
 	    
 		
 			if (!$this->user) {
@@ -73,7 +76,9 @@ class Controller_Guestbook extends Controller_Page {
 			}
 		}
 	
-	$this->template->content = View::factory('/guestbook/add');
+	$this->template->jscripts[]='/tinymce/tiny_mce';
+	
+	$this->template->content = View::factory('/guestbook/add2');
 	}
 	
 	public function action_delete()
@@ -82,7 +87,7 @@ class Controller_Guestbook extends Controller_Page {
 	* Удаление сообщений
 	**/
 	$id = $this->request->param('id');
-	$guestbook=ORM::factory('guestbook',$id);
+	$guestbook=ORM::factory('Guestbook',$id);
 	
 		if(!$guestbook->loaded()){
 			throw HTTP_Exception::factory(404,'Данного сообщения нет');

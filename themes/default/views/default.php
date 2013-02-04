@@ -1,61 +1,82 @@
 <!DOCTYPE html>
-<html>
- <head>
-  <meta charset="utf-8" />
-  <title><?php echo $title ?></title>
-  <meta name="keywords" content="<?php echo $keywords ?>" />
-  <meta name="description" content="<?php echo $description ?>" />
-  <?php 
-   echo HTML::style('themes/default/css/main.css');
-   echo HTML::style('themes/default/css/form.css');
-   echo HTML::style('themes/default/css/post.css');
-  ?>
- </head> 
- <body>
- <div id="container">
-  <header id="header">	
-		<h1>PEGAS <span>CMS</span></h1>
-		<p>Based on <?php echo Kohana::version() ?></p>	
-		<?php echo Widget::load('TopMenu'); ?>
-  </header>
-	<?php if ($fullcontent) { ?>
+<html lang="ru">
+  <head>
+     <meta charset="utf-8" />
+	 <title><?php echo $title ?></title>
+	 <meta name="keywords" content="<?php echo $keywords ?>" />
+     <meta name="description" content="<?php echo $description ?>" />
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 	
-		<div id="post">
-		<?php 
+	<?php 
+	/**
+	* Подключение файлов .css
+	*/
+	foreach($styles as $style) {
+		echo HTML::style($style.'.css')."\n";
+	} 
+	
+	/**
+	* Подключение файлов .js
+	*/
+	foreach($jscripts as $jscript) {
+		echo HTML::script($jscript.'.js')."\n";
+	} 
+	?>
+
+  </head>
+
+<body>
+
+<!-- Верхнея навигационная панель -->
+<?php echo Widget::load('TopMenu'); ?>
+ 
+
+<div class="container">
+<!-- Заголовок сайта -->
+
+<header class="subhead" id="overview">
+  <div class="head-title">
+      <h1>PEGAS <span>CMS</span></h1>
+	  <p>&nbsp; Based on <?php echo Kohana::version() ?></p>		
+  </div>
+  
+  <!-- Субменю навигационная панель -->
+  <?php echo Widget::load('SubMenu'); ?>
+</header>
+
+<div class="row">
+  <!-- Основной блок -->
+  <?php 
 		echo View::factory('/main/error');
 		echo View::factory('/main/message');
 		if(!empty($content))echo $content; 
-		?>
-		</div>
- 
-	<?php } else { ?>
-			<div id="content">
-		
-				<div id="post">
-				<?php 
-				echo View::factory('/main/error'); 
-				echo View::factory('/main/message');
-				if(!empty($content))echo $content; 
-				?>
-				</div>
-		
-			</div>
-			
-			<div id="sidebar">
-			<?php 
-			if(empty($sidebarcontent)) { 
-			echo Widget::load('RightSidebar'); 
-			} else {
-			echo $sidebarcontent;
-			}
-			?>
-			</div>
-	<?php } ?>
-	
-  <footer id="footer">
-	&copy; <?php echo HTML::anchor('/#', 'Pegas CMS'); ?> 2011-<?php echo date('Y'); ?> г
-  </footer>
- 
+  ?>
 </div>
-</body> 
+
+
+
+<!-- Footer -->
+	  <div class="container">
+      <hr>
+      <footer id="footer">
+        <p class="pull-right"><a href="#">&uarr; Наверх</a></p>
+        <div class="links">
+		  Наши кнопки:
+          <a href="news/rss">RSS</a>
+          <a href="https://twitter.com/">Twitter</a>
+          <a href="http://vk.com/thomaspark/bootswatch/">Вконтакте</a>
+          <a href="http://facebook.com">Facebook</a>
+        </div>
+        <p>
+		&copy; Авторские права Gilamov Danis <?php echo HTML::anchor('/', 'CmsPegas.ru'); ?>  -   2011-<?php echo date('Y'); ?> г <br />
+        Powered by <?php echo HTML::anchor('/', 'Pegas CMS'); ?>. 
+		</p>
+      </footer>
+	  </div>
+
+</div>
+</body>
 </html>

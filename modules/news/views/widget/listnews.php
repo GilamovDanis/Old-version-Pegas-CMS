@@ -1,32 +1,21 @@
-<h2>Новости сайта</h2> <br />
+<h3>Новости сайта</h3>
 
-<table>
+<table class="table table-striped table-bordered">
 	<?php foreach ($messages as $message) { ?>
-	<?php if($message->id%2==0) { ?>
-	<tr class="post1">
-	<?php } else { ?>
-	<tr class="post2">
-	<?php } ?>
-		<td width="55">
+	<tr>
+		<td width="60">
 		<?php echo HTML::image('themes/default/icons/news48.png', array('alt' => 'Новости')) ?>
 		</td>
-		<td width="915">
-		<div class="post_title">
-		<b><?php echo $message->title; ?></b> - <?php echo Date::timef($message->created)?>
-		</div>
-		<div class="post_content">
-		<?php if (UTF8::strlen($message->content)>256) { 
-			 $message->content=UTF8::substr($message->content,0,256);
-			 
-		     $url=HTML::anchor('/news/view/'.$message->id, 'Читать полностью');
-			 echo Text::auto_p($message->content).'.. <br /> &raquo;  '.$url;
-			 } else {
-			 echo Text::auto_p($message->content);
-			 }
+		<td>
+		<p>
+		<strong><?php echo $message->title; ?></strong> - <?php echo Date::timef($message->created)?>
+		</p>
+		<p>
+		<?php 
+		echo Text::auto_p(Text::pagebreak($message->content,array('link'=>'/news/view/'.$message->id)));
 		?>
-		</div>
+		</p>
 		</td>
 	</tr>
 	<?php } ?>
 </table>
-<br />

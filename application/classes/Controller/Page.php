@@ -7,6 +7,7 @@ abstract class Controller_Page extends Controller_Template {
 
 	public $template='default';
 	public $config=array();
+	public $theme_config=array();
 	public $session;
 	public $auth;
 	public $user;
@@ -21,6 +22,12 @@ abstract class Controller_Page extends Controller_Template {
 	
 		Kohana::add_path('themes/'.$this->config->get('web_theme').'/');
 		parent::before();
+	
+	/**
+	* Получение настроек самой темы оформления
+	*/
+	$this->theme_config=Kohana::$config->load('theme_'.$this->config->get('web_theme'));
+	
 	/**
 	* Идентификация пользователя
 	*/
@@ -28,7 +35,8 @@ abstract class Controller_Page extends Controller_Template {
 	$this->auth = Auth::instance();
 	$this->user = $this->auth->get_user();
 	
-	$this->template->fullcontent=FALSE;
+	$this->template->styles=$this->theme_config['styles'];
+	$this->template->jscripts=$this->theme_config['jscripts'];;
     }
 	
 	

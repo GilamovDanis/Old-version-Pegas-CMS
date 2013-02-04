@@ -1,23 +1,19 @@
-<h2>Гостевая книга</h2> <br />
+<h3>Гостевая книга</h3>
 
-<table>
+<table class="table table-striped table-bordered">
 	<?php foreach ($messages as $message) { ?>
-	<?php if($message->id%2==0) { ?>
-	<tr class="post1">
-	<?php } else { ?>
-	<tr class="post2">
-	<?php } ?>
-		<td width="55">
+	<tr>
+		<td width="60">
 		<?php echo HTML::image('themes/default/icons/ava.png', array('alt' => 'Аватар')) ?>
 		</td>
-		<td width="615">
-		<div class="post_title">
-		<b><?php echo $message->username; ?></b> - <?php echo Date::timef($message->created)?>
-		</div>
-		<div class="post_content">
+		<td>
+		<p>
+		<strong><?php echo $message->username; ?></strong> - <?php echo Date::timef($message->created)?>
+		</p>
+		<p>
 		<?php echo Text::auto_p($message->content) ?>
-		</div>
+		</p>
 		</td>
 	</tr>
 	<?php } ?>
-</table> <br />
+</table> 

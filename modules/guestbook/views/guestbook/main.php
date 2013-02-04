@@ -1,26 +1,23 @@
-<h2>Гостевая книга</h2> <br />
+<div class="span8">
+<h3>Гостевая книга</h3>
 
-<div class="links">
+<div class="nav-links">
 <?php echo HTML::image('themes/default/icons/refresh.png', array('alt' => 'img','style'=>'vertical-align:middle')); ?> <?php echo HTML::anchor('/guestbook/', 'Обновить'); ?>
 </div>
 
-<table>
+<table class="table table-striped table-bordered">
 	<?php foreach ($messages as $message) { ?>
-	<?php if($message->id%2==0) { ?>
-	<tr class="post1">
-	<?php } else { ?>
-	<tr class="post2">
-	<?php } ?>
-		<td width="55">
+	<tr>
+		<td width="60">
 		<?php echo HTML::image('themes/default/icons/ava.png', array('alt' => 'Аватар')) ?>
 		</td>
-		<td width="615">
-		<div class="post_title">
-		<b><?php echo $message->username; ?></b> - <?php echo Date::timef($message->created)?>
-		</div>
-		<div class="post_content">
+		<td>
+		<p>
+		<strong><?php echo $message->username; ?></strong> - <?php echo Date::timef($message->created)?>
+		</p>
+		<p>
 		<?php echo Text::auto_p($message->content) ?>
-		</div>
+		</p>
 			<?php
 			if(Auth::instance()->logged_in('admin')) { 
 			echo HTML::anchor('/guestbook/delete/'.$message->id, ' Удалить',array('onclick'=>"return confirm('Вы точно хотите удалить сообщение?')")); 
@@ -31,3 +28,8 @@
 </table>
 <?php echo $pagination ?> <br />
 <?php echo View::factory('/guestbook/add'); ?>
+</div>
+
+<div class="span4">
+<?php echo View::factory('/guestbook/sidebar'); ?>
+</div>

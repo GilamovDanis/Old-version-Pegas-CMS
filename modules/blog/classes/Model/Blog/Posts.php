@@ -5,7 +5,7 @@ class Model_Blog_Posts extends ORM {
 	 
 	 protected $_has_many = array(
 		'category' => array(
-			'model' => 'blog_categories',
+			'model' => 'Blog_Categories',
 			'through' => 'blog_posts_categories',
 			'foreign_key' => 'post_id',
 			'far_key' => 'category_id'

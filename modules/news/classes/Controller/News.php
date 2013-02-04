@@ -53,15 +53,14 @@ class Controller_News extends Controller_Page {
 	
 		if ($_POST) {
 		$data = Arr::extract($_POST, array('title', 'content'));
-		$data = Arr::map('HTML::chars', $data);
+		$data = Arr::map('Security::xss_clean', $data);
 	    
 		
 			$data = Validation::factory($data)->rule('title' , 'not_empty')
 											  ->rule('title' , 'min_length', array(':value', 2))
-										      ->rule('title' , 'max_length', array(':value', 64))
+										      ->rule('title' , 'max_length', array(':value', 128))
 											  ->rule('content' , 'not_empty')
-										      ->rule('content' , 'min_length', array(':value', 4))
-										      ->rule('content' , 'max_length', array(':value', 1024));
+										      ->rule('content' , 'min_length', array(':value', 4));
 			
 			if ($data->check()) {
 			$news->title=$data['title'];
@@ -75,6 +74,8 @@ class Controller_News extends Controller_Page {
 				$this->error=$data->errors('news');
 			}
 		}
+	
+	$this->template->jscripts[]='/tinymce/tiny_mce';
 	
 	$this->template->fullcontent=true;
 	$this->template->content = View::factory('/news/add');

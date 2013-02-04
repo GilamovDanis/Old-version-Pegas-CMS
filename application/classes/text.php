@@ -1,7 +1,23 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
 class Text extends Kohana_Text {
-
+	
+	public static function pagebreak ($text , array $attributes = NULL) {
+		
+	if ($text_position_cut=UTF8::strpos($text, '<!-- pagebreak -->')) {
+    
+	$text=UTF8::substr($text,0,$text_position_cut);
+	
+		if (isset($attributes['link'])) {
+			if (!isset($attributes['title'])) {
+			  $attributes['title']='Читать дальше';
+			}
+		
+		$text.='<br />'.HTML::anchor($attributes['link'], $attributes['title']);
+		} 
+	}
+		return $text;
+	}
 
 	public static function auto_p($str, $br = TRUE)
 	{

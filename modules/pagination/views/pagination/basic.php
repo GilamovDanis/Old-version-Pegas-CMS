@@ -1,9 +1,24 @@
-<p class="pagination">
+<div class="span12">
+      <div class="pagination pagination-centered">
+        <ul>
+          <li><a href="#">&larr;</a></li>
+          <li class="active"><a href="#">10</a></li>
+		  <li class="active"><a href="#">11</a></li>
+		  <li class="active"><a href="#">12</a></li>
+          <li class="disabled"><a href="#">...</a></li>
+          <li><a href="#">20</a></li>
+		  <li><a href="#">21</a></li>
+          <li><a href="#">&rarr;</a></li>
+        </ul>
+      </div>
+</div>
 
+<div class="pagination pagination-centered">
+    <ul>
 	<?php if ($first_page !== FALSE): ?>
 		<a href="<?php echo HTML::chars($page->url($first_page)) ?>" rel="first"><?php echo __('First') ?></a>
 	<?php else: ?>
-		<?php echo __('First') ?>
+		<span class="pagination-button2"><?php echo __('First') ?></span>
 	<?php endif ?>
 
 	<?php if ($previous_page !== FALSE): ?>
@@ -33,5 +48,5 @@
 	<?php else: ?>
 		<?php echo __('Last') ?>
 	<?php endif ?>
-
-</p><!-- .pagination -->
+    </ul>
+</div><!-- .pagination -->
