@@ -18,7 +18,7 @@
 <li class="text-success">Регистрация | Авторизация</li>
 <li class="text-success">Гостевая книга</li>
 <li class="text-success">Новости</li>
-<li class="text-info">Блог</li>
+<li class="text-success">Блог</li>
 <li class="muted">Админ-панель</li>
 <li class="muted">Форум</li>
 <li class="muted">Загруз-центр</li>

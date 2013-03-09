@@ -1,10 +1,10 @@
-<div class="span12">
 <?php 
 /**
  * Вывод ошибок 
 **/
 if (!empty($error)) {
 ?>
+<div class="span12">
 <div class="alert alert-error">
 <?php
 	if (is_array($error)) {
@@ -23,8 +23,7 @@ if (!empty($error)) {
 	<span><?php echo $error; ?></span>
 	<?php } ?>
 </div>
-
+</div>
 <?php
 }
 ?>
-</div>

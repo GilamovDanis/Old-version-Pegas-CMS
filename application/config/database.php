@@ -19,9 +19,9 @@ return array
 			 * Ports and sockets may be appended to the hostname.
 			 */
 			'hostname'   => 'localhost',
-			'database'   => 'kohanaf',
-			'username'   => 'kohanaf',
-			'password'   => 'kohanaf',
+			'database'   => 'pegascms',
+			'username'   => 'root',
+			'password'   => '',
 			'persistent' => TRUE,
 		),
 		'table_prefix' => '',

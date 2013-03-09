@@ -44,7 +44,15 @@
   </div>
   
   <!-- Субменю навигационная панель -->
-  <?php echo Widget::load('SubMenu'); ?>
+  <?php 
+  // Мега костыль. Спать охота
+  $place=array('Blog','Blog_Post','Blog_Category','Apanel_Blog_Post','Apanel_Blog_Category');
+  if (in_array(Request::current()->controller(),$place)) {
+	echo Widget::load('BlogSubMenu'); 
+  } else {
+	echo Widget::load('SubMenu'); 
+  }
+  ?>
 </header>
 
 <div class="row">

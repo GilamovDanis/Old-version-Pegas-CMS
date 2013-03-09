@@ -1,10 +1,10 @@
-<div class="span12">
 <?php 
 /**
  * Вывод сообщений
 **/
 if (!empty($message)) {
 ?>
+<div class="span12">
 <div class="alert alert-success">
 <?php
 	if (is_array($message)) {
@@ -23,8 +23,7 @@ if (!empty($message)) {
 	<span><?php echo $message; ?></span>
 	<?php } ?>
 </div>
-
+</div>
 <?php
 }
 ?>
-</div>

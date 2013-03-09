@@ -17,11 +17,10 @@
 	</tr>
 </table>
 
-<div class="links">
+<div class="nav-links">
 <?php 
 echo HTML::image('themes/default/icons/news.png', array('alt' => 'img','style'=>'vertical-align:middle')); ?> <?php echo HTML::anchor('/news/', 'Новости'); 
 ?>
-<br />
 <?php
 if(Auth::instance()->logged_in('admin')) { 
 echo HTML::image('themes/default/icons/delete.png', array('alt' => 'img','style'=>'vertical-align:middle')); echo HTML::anchor('/news/delete/'.$news->id, ' Удалить новость',array('onclick'=>"return confirm('Вы точно хотите удалить новость?')")); 

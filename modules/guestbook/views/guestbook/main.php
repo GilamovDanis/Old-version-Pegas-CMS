@@ -5,7 +5,7 @@
 <?php echo HTML::image('themes/default/icons/refresh.png', array('alt' => 'img','style'=>'vertical-align:middle')); ?> <?php echo HTML::anchor('/guestbook/', 'Обновить'); ?>
 </div>
 
-<table class="table table-striped table-bordered">
+<table class="table table-striped table-condesed table-bordered">
 	<?php foreach ($messages as $message) { ?>
 	<tr>
 		<td width="60">

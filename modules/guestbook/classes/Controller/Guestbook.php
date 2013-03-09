@@ -22,7 +22,6 @@ class Controller_Guestbook extends Controller_Page {
     $this->template->content=View::factory('guestbook/main')
 		->bind('messages',$messages)
 		->bind('pagination',$pagination);
-	$this->template->sidebarcontent=View::factory('guestbook/sidebar');
 	}
 	
 	

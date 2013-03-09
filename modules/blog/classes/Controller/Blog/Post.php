@@ -7,14 +7,13 @@ class Controller_Blog_Post extends Controller_Page {
 	/**
 	* Вывод отдельной статьи
 	**/
-	$blog_posts=ORM::factory('Blog_Posts');
-	$blog_categories=ORM::factory('Blog_Categories');
-	
 	$request_category=$this->request->param('category');
 	$request_post=$this->request->param('post');
 	
-	$category=$blog_categories->where('category_url','=',$request_category)->find();
+	$blog_posts=ORM::factory('Blog_Posts');
+
 	$post=$blog_posts->where('post_url','=',$request_post)->find();
+	$category=$blog_posts->category->where('category_url','=',$request_category)->find();
 	
 	if (!$category->loaded() || !$post->loaded()) {
 		throw HTTP_Exception::factory(404,'Статья не найдена');
@@ -22,10 +21,9 @@ class Controller_Blog_Post extends Controller_Page {
 	
 	$this->template->title=$post->title;
 		
-	$this->template->fullcontent=true;
     $this->template->content=View::factory('blog/post')
 		->bind('category',$category)
 		->bind('post',$post);
 	}
 
-} // End Blog
+} // End blog

@@ -4,7 +4,7 @@
         <a class="brand" href="/">CmsPegas.RU</a>
         <div class="nav-collapse">
           <ul class="nav">
-            <li class="active"><?php echo HTML::anchor('/#', 'Главная'); ?></li>
+            <li><?php echo HTML::anchor('/#', 'Главная'); ?></li>
             <li><?php echo HTML::anchor('/guestbook', 'Гостевая книга'); ?></li>
             <li><?php echo HTML::anchor('/news', 'Новости'); ?></li>
 			<li><?php echo HTML::anchor('/blog', 'Блог'); ?></li>

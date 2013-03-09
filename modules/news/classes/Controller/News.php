@@ -16,7 +16,6 @@ class Controller_News extends Controller_Page {
 		
 	$messages = $news->order_by('created','DESC')->limit($pagination->items_per_page)->offset($pagination->offset)->find_all();
 	
-	$this->template->fullcontent=true;
     $this->template->content=View::factory('news/main')
 		->bind('messages',$messages)
 		->bind('pagination',$pagination);
@@ -77,7 +76,6 @@ class Controller_News extends Controller_Page {
 	
 	$this->template->jscripts[]='/tinymce/tiny_mce';
 	
-	$this->template->fullcontent=true;
 	$this->template->content = View::factory('/news/add');
 	}
 	

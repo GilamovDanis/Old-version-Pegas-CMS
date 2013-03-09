@@ -7,7 +7,7 @@ class Controller_Blog extends Controller_Page {
 	/**
 	* Вывод статей
 	**/
-	$this->template->title='Блоги';
+	$this->template->title='Блог';
 	
 	$blog_posts=ORM::factory('Blog_Posts');
     
@@ -16,7 +16,6 @@ class Controller_Blog extends Controller_Page {
 		
 	$messages = $blog_posts->where('status','=','publish')->order_by('created','DESC')->limit($pagination->items_per_page)->offset($pagination->offset)->find_all();
 	
-	$this->template->fullcontent=true;
     $this->template->content=View::factory('blog/main')
 		->bind('messages',$messages)
 		->bind('pagination',$pagination);

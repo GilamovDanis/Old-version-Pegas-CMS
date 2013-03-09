@@ -1,4 +1,4 @@
-<div class="span8">
+<div class="span12">
 <script type="text/javascript">
 tinyMCE.init({
         mode : "textareas",
@@ -16,33 +16,30 @@ tinyMCE.init({
 
 });
 </script>
-<?php echo Form::open('/blog/post/add',array('enctype'=>'multipart/form-data'))?>
+<?php echo Form::open('/blog/category/add',array('enctype'=>'multipart/form-data'))?>
 <fieldset>
-<legend>Добавление нового статьи</legend>
-<?php echo Form::label('title', 'Заголовок статьи (max 128)') ?> 
-<?php echo Form::input('title', HTML::chars(Arr::get($_POST, 'title')),array('placeholder'=>'Введите название статья'))?>
+<legend>Добавление новой категории</legend>
+<?php echo Form::label('title', 'Заголовок категории (max 128)') ?> 
+<?php echo Form::input('title', HTML::chars(Arr::get($_POST, 'title')),array('placeholder'=>'Введите название категории'))?>
 <?php echo Form::label('category_id', 'Выберите категорию') ?>  
 <select name="category_id">
+
+<option value="0">Корневая категория</option>
 		<?php 
 		foreach ($category->find_all() as $categories) { 
 		if (!$categories->category_id) {?>
-		<option value="<?php echo $categories->id?>" class="out-group" <?php if ($categories->id==HTML::chars(Arr::get($_POST, 'category_id'))) echo "selected"?>><?php echo $categories->title?></strong></option>	
+		<option value="<?php echo $categories->id?>" <?php if ($categories->id==HTML::chars(Arr::get($_POST, 'category_id'))) echo "selected"?>><?php echo $categories->title?></option>	
 		<?php }
-		$options=array();
-		  foreach ($category->find_all() as $option) {
-		   if ($option->category_id && $option->category_id==$categories->id) {
-		   ?>
-		   <option value="<?php echo $option->id?>" <?php if ($option->id==HTML::chars(Arr::get($_POST, 'category_id'))) echo "selected"?> ><?php echo $option->title?></option>
-		   <?php
-		   }
 		 } 
-		}
 		?>
-</select> <br />
-
-<?php echo Form::label('content', 'Введите текст к статья') ?>  
-<?php echo Form::textarea('content', NULL,array('rows'=>10))?> 
+</select> 
+ <span class="help-block">
+ * Для корневой директории выберите пункт  корневая категория(начальная категория) <br />
+* Для создания подкатегорий выберите категорию из списка
+</span>
 <br />
+<?php echo Form::label('content', 'Введите описание к категории') ?>  
+<?php echo Form::textarea('content', NULL,array('rows'=>10))?> 
 <?php echo Form::submit('save','Добавить',array('class'=>'btn btn-success'))?>
 </fieldset>
 <?php echo Form::close()?>
@@ -52,8 +49,4 @@ tinyMCE.init({
 echo HTML::image('themes/default/icons/blog.png', array('alt' => 'img','style'=>'vertical-align:middle')); echo HTML::anchor('/blog', ' Статьи'); 
 ?>
 </div>
-</div>
-
-<div class="span4">
-<?php echo View::factory('/blog/apanel/post/sidebar1'); ?>
 </div>
