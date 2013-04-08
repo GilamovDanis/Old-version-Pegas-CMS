@@ -2,14 +2,16 @@
 <?php echo Form::open('auth/registration')?>
 <fieldset>
 <legend>Регистрация</legend>
+<p> Также можно зарегистрироваться через социальные сети</p>
+<p><?php echo Ulogin::factory()->render(); ?></p> 
 <?php echo Form::label('username', 'Логин (max 32)') ?>
-<?php echo Form::input('username', HTML::chars(Arr::get($_POST, 'username')),array('placeholder'=>'Введите логин..'))?> 
+<?php echo Form::input('username', HTML::chars(Arr::get(Request::current()->post(), 'username')),array('placeholder'=>'Введите логин..'))?> 
 <?php echo Form::label('email', 'E-mail') ?>
-<?php echo Form::input('email', HTML::chars(Arr::get($_POST, 'email')),array('placeholder'=>'Введите E-mail..'))?> 
+<?php echo Form::input('email', HTML::chars(Arr::get(Request::current()->post(), 'email')),array('placeholder'=>'Введите E-mail..'))?> 
 <?php echo Form::label('password', 'Пароль (max 64)')?> 
 <?php echo Form::password('password')?> 
-<?php echo Form::label('confirm_password', 'Повторите пароль')?> 
-<?php echo Form::password('confirm_password')?> <br />
+<?php echo Form::label('password_confirm', 'Повторите пароль')?> 
+<?php echo Form::password('password_confirm')?> <br />
 <?php echo Form::label('captcha', 'Введите символы с картинки')?> 
 <?php echo Captcha::instance()->render(); ?> <br /> <br />
 <?php echo Form::input('captcha', FALSE,array('size'=>4,'placeholder'=>'Введите код'))?><br /> 

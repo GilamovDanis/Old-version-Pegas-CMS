@@ -113,7 +113,7 @@ Cookie::$salt = 'sdak2164uadpasdo21z';
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
 Kohana::modules(array(
-	'captcha'      => MODPATH.'captcha',      // Captcha
+	'user'         => MODPATH.'user',         // Basic authentication
 	'auth'         => MODPATH.'auth',         // Basic authentication
 	'cache'        => MODPATH.'cache',        // Caching with multiple backends
 	'database'     => MODPATH.'database',     // Database access
@@ -122,10 +122,14 @@ Kohana::modules(array(
 	'orm'          => MODPATH.'orm',          // Object Relationship Mapping
 	'pagination'   => MODPATH.'pagination',   // Pagination
 	'htmlpurifier' => MODPATH.'htmlpurifier', // HtmlPurifier
+	'captcha'      => MODPATH.'captcha',      // Captcha
+	'email' => MODPATH.'email', 			  // Ulogin
+	'ulogin' => MODPATH.'ulogin', 			  // Ulogin
 	
 	/**
 	* My Modules
 	**/
+	'apanel'  => MODPATH.'apanel',  	  // Apanel
 	'guestbook'  => MODPATH.'guestbook',  // Guestbook
 	'news'  	 => MODPATH.'news',       // News
 	'blog'  	 => MODPATH.'blog',  	  // Blogs

@@ -3,8 +3,6 @@
   <head>
      <meta charset="utf-8" />
 	 <title><?php echo $title ?></title>
-	 <meta name="keywords" content="<?php echo $keywords ?>" />
-     <meta name="description" content="<?php echo $description ?>" />
 
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -39,7 +37,7 @@
 
 <header class="subhead" id="overview">
   <div class="head-title">
-      <h1>PEGAS <span>CMS</span></h1>
+      <h1><?php echo $title ?></h1>
 	  <p>&nbsp; Based on <?php echo Kohana::version() ?></p>		
   </div>
   

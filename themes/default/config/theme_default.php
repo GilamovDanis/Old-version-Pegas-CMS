@@ -1,9 +1,10 @@
 <?php defined('SYSPATH') or die('No direct access allowed.');
 
 return array(
-	'name' => 'Тема оформления',
+	'title' => 'Тема оформления',
 	'description' => 'Тема оформления Pegas CMS',
 	'author' => 'Gilamov Danis',
+	'type' => 0,
 	/**
 	* Постоянно подключаемые файлы .css
 	*/

@@ -1,8 +1,7 @@
-<?php defined('SYSPATH') or die('No direct access allowed.');
+<?php defined('SYSPATH') or die('No direct script access.');
 
 return array(
-	'title'       => 'Pegas CMS',
-	'keywords'  => 'Pegas CMS',
-	'description' => 'Pegas CMS',
-	'web_theme' => 'default'
+	'title' => 'Pegas CMS 2',
+	'theme' => 'default',
+	'admin_theme' => 'admin',
 );

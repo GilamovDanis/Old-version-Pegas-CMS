@@ -22,7 +22,7 @@ tinyMCE.init({
 <?php echo Form::label('title', 'Введите название новости (max 128)',array('placeholder'=>'Введите название новости')) ?>
 <?php echo Form::input('title')?> 
 <?php echo Form::label('content', 'Введите текст новости') ?> 
-<?php echo Form::textarea('content',HTML::chars(Arr::get($_POST, 'content')))?> <br />
+<?php echo Form::textarea('content',HTML::chars(Arr::get(Request::current()->post(), 'content')))?> <br />
 <?php echo Form::submit('save','Добавить',array('class'=>'btn btn-success'))?>
 </fieldset>
 <?php echo Form::close()?>

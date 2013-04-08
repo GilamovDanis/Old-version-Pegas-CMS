@@ -112,12 +112,12 @@ class Kohana_Debug {
 			if (UTF8::strlen($var) > $length)
 			{
 				// Encode the truncated string
-				$str = htmlspecialchars(UTF8::substr($var, 0, $length), ENT_NOQUOTES, Kohana::$charset).'&nbsp;&hellip;';
+				$str = @htmlspecialchars(UTF8::substr($var, 0, $length), ENT_NOQUOTES, Kohana::$charset).'&nbsp;&hellip;';
 			}
 			else
 			{
 				// Encode the string
-				$str = htmlspecialchars($var, ENT_NOQUOTES, Kohana::$charset);
+				$str = @htmlspecialchars($var, ENT_NOQUOTES, Kohana::$charset);
 			}
 
 			return '<small>string</small><span>('.strlen($var).')</span> "'.$str.'"';
@@ -155,7 +155,7 @@ class Kohana_Debug {
 					if ($key === $marker) continue;
 					if ( ! is_int($key))
 					{
-						$key = '"'.htmlspecialchars($key, ENT_NOQUOTES, Kohana::$charset).'"';
+						$key = '"'.@htmlspecialchars($key, ENT_NOQUOTES, Kohana::$charset).'"';
 					}
 
 					$output[] = "$space$s$key => ".Debug::_dump($val, $length, $limit, $level + 1);
@@ -231,7 +231,7 @@ class Kohana_Debug {
 		}
 		else
 		{
-			return '<small>'.gettype($var).'</small> '.htmlspecialchars(print_r($var, TRUE), ENT_NOQUOTES, Kohana::$charset);
+			return '<small>'.gettype($var).'</small> '.@htmlspecialchars(print_r($var, TRUE), ENT_NOQUOTES, Kohana::$charset);
 		}
 	}
 
@@ -309,7 +309,7 @@ class Kohana_Debug {
 			if ($line >= $range['start'])
 			{
 				// Make the row safe for output
-				$row = htmlspecialchars($row, ENT_NOQUOTES, Kohana::$charset);
+				$row = @htmlspecialchars($row, ENT_NOQUOTES, Kohana::$charset);
 
 				// Trim whitespace and sanitize the row
 				$row = '<span class="number">'.sprintf($format, $line).'</span> '.$row;

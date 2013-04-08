@@ -14,6 +14,11 @@ $application = 'application';
 $files = 'files';
 
 /**
+* THEMESPATH
+*/
+$themes = 'themes';
+
+/**
  * The directory in which your modules are located.
  *
  * @link http://kohanaframework.org/guide/about.install#modules
@@ -76,6 +81,10 @@ if ( ! is_dir($system) AND is_dir(DOCROOT.$system))
 // Make the system relative to the docroot, for symlink'd index.php
 if ( ! is_dir($files) AND is_dir(DOCROOT.$files))
 	$files = DOCROOT.$files;
+
+// Make the system relative to the docroot, for symlink'd index.php
+if ( ! is_dir($themes) AND is_dir(DOCROOT.$themes))
+	$themes = DOCROOT.$themes;
 	
 
 // Define the absolute paths for configured directories
@@ -83,15 +92,10 @@ define('APPPATH', realpath($application).DIRECTORY_SEPARATOR);
 define('MODPATH', realpath($modules).DIRECTORY_SEPARATOR);
 define('SYSPATH', realpath($system).DIRECTORY_SEPARATOR);
 define('FILESPATH', realpath($files).DIRECTORY_SEPARATOR);
+define('THEMESPATH', realpath($themes).DIRECTORY_SEPARATOR);
 
 // Clean up the configuration vars
-unset($application, $modules, $system, $files);
-
-if (file_exists('install'.EXT))
-{
-	// Load the installation check
-	return include 'install'.EXT;
-}
+unset($application, $modules, $system, $files,$themes);
 
 /**
  * Define the start time of the application, used for profiling.

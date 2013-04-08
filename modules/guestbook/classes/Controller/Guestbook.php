@@ -34,8 +34,8 @@ class Controller_Guestbook extends Controller_Page {
 	
 	$guestbook=ORM::factory('Guestbook');
 	
-		if ($_POST) {
-		$data = Arr::extract($_POST, array('name', 'content','captcha'));
+		if (HTTP_Request::POST==Request::current()->method()) {
+		$data = Arr::extract(Request::current()->post(), array('name', 'content','captcha'));
 		$data = Arr::map('Security::xss_clean', $data);
 	    
 		
@@ -44,7 +44,7 @@ class Controller_Guestbook extends Controller_Page {
 											  ->rule('name' , 'min_length', array(':value', 2))
 										      ->rule('name' , 'max_length', array(':value', 64))
 											  ->rule('captcha' , 'Model_User::captcha_valid')
-											  ->rule('name' , 'Model_User::login_valid')
+											  ->rule('name' , 'Model_User::username_valid')
 											  ->rule('name' , 'Model_Guestbook::unique_key')
 											  ->rule('content' , 'not_empty')
 										      ->rule('content' , 'min_length', array(':value', 4))

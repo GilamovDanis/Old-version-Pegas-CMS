@@ -36,7 +36,6 @@ class Controller_News extends Controller_Page {
 		}
 	
 	
-	$this->template->fullcontent=true;
     $this->template->content=View::factory('news/viewnews')->bind('news',$news);
 	}
 	
@@ -50,8 +49,8 @@ class Controller_News extends Controller_Page {
 	
 	$news=ORM::factory('News');
 	
-		if ($_POST) {
-		$data = Arr::extract($_POST, array('title', 'content'));
+		if (HTTP_Request::POST==Request::current()->method()) {
+		$data = Arr::extract(Request::current()->post(), array('title', 'content'));
 		$data = Arr::map('Security::xss_clean', $data);
 	    
 		
@@ -77,6 +76,49 @@ class Controller_News extends Controller_Page {
 	$this->template->jscripts[]='/tinymce/tiny_mce';
 	
 	$this->template->content = View::factory('/news/add');
+	}
+	
+	public function action_edit()
+	{
+	/**
+	* Добавление новостей
+	**/
+	$this->template->title ='Добавление новости';	
+	
+	$id = $this->request->param('id');
+	$news=ORM::factory('News',$id);
+	
+	if(!$news->loaded()){
+			throw HTTP_Exception::factory(404,'Данного сообщения нет');
+	}
+	
+		if (HTTP_Request::POST==Request::current()->method()) {
+		$data = Arr::extract(Request::current()->post(), array('title', 'content'));
+		$data = Arr::map('Security::xss_clean', $data);
+	    
+		
+			$data = Validation::factory($data)->rule('title' , 'not_empty')
+											  ->rule('title' , 'min_length', array(':value', 2))
+										      ->rule('title' , 'max_length', array(':value', 128))
+											  ->rule('content' , 'not_empty')
+										      ->rule('content' , 'min_length', array(':value', 4));
+			
+			if ($data->check()) {
+			$news->title=$data['title'];
+			$news->content=$data['content'];
+			$news->created=time();
+				
+			$news->save();
+			
+			HTTP::redirect('/news/');
+			} else {
+				$this->error=$data->errors('news');
+			}
+		}
+	
+	$this->template->jscripts[]='/tinymce/tiny_mce';
+	
+	$this->template->content = View::factory('/news/edit')->bind('news',$news);
 	}
 	
 	public function action_delete()

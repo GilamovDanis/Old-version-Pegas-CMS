@@ -13,7 +13,12 @@
 		</td>
 		<td>
 		<p>
-		<strong><?php echo $message->username; ?></strong> - <?php echo Date::timef($message->created)?>
+		<?php if(!Model_Guestbook::unique_key($message->username)) { ?>
+		<strong><?php echo HTML::anchor('/user/'.$message->username, $message->username); ?></strong> 
+		<?php } else { ?>
+		<strong><?php echo $message->username; ?></strong>
+		<?php } ?>
+		- <?php echo Date::timef($message->created)?>
 		</p>
 		<p>
 		<?php echo Text::auto_p($message->content) ?>

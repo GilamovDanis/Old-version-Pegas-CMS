@@ -20,7 +20,7 @@ tinyMCE.init({
 <fieldset>
 <legend>Добавление новой категории</legend>
 <?php echo Form::label('title', 'Заголовок категории (max 128)') ?> 
-<?php echo Form::input('title', HTML::chars(Arr::get($_POST, 'title')),array('placeholder'=>'Введите название категории'))?>
+<?php echo Form::input('title', HTML::chars(Arr::get(Request::current()->post(), 'title')),array('placeholder'=>'Введите название категории'))?>
 <?php echo Form::label('category_id', 'Выберите категорию') ?>  
 <select name="category_id">
 
@@ -28,7 +28,7 @@ tinyMCE.init({
 		<?php 
 		foreach ($category->find_all() as $categories) { 
 		if (!$categories->category_id) {?>
-		<option value="<?php echo $categories->id?>" <?php if ($categories->id==HTML::chars(Arr::get($_POST, 'category_id'))) echo "selected"?>><?php echo $categories->title?></option>	
+		<option value="<?php echo $categories->id?>" <?php if ($categories->id==HTML::chars(Arr::get(Request::current()->post(), 'category_id'))) echo "selected"?>><?php echo $categories->title?></option>	
 		<?php }
 		 } 
 		?>

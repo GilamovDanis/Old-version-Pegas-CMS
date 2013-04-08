@@ -20,13 +20,13 @@ abstract class Controller_Page extends Controller_Template {
 	{
 	$this->config=Kohana::$config->load('main');
 	
-		Kohana::add_path('themes/'.$this->config->get('web_theme').'/');
+		Kohana::add_path('themes/'.$this->config->get('theme').'/');
 		parent::before();
 	
 	/**
 	* Получение настроек самой темы оформления
 	*/
-	$this->theme_config=Kohana::$config->load('theme_'.$this->config->get('web_theme'));
+	$this->theme_config=Kohana::$config->load('theme_'.$this->config->get('theme'));
 	
 	/**
 	* Идентификация пользователя
@@ -44,8 +44,6 @@ abstract class Controller_Page extends Controller_Template {
 	{
 	View::set_global(array(
     'title' 	  => !isset($this->template->title)?$this->config->get('title'):$this->template->title,
-	'keywords'    => !isset($this->template->keywords)?$this->config->get('keywords'):$this->template->keywords,
-    'description' => !isset($this->template->description)?$this->config->get('description'):$this->template->description,
 	'session' 	  => $this->session,
 	'user' 	      => $this->user,
 	'error' 	  => $this->error,

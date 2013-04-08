@@ -1,9 +1,10 @@
 <div class="span8">
 <?php echo Form::open('auth')?>
 <fieldset>
-<legend>Авторизация</legend>
+<legend>Войти</legend>
+<?php echo Ulogin::factory()->render(); ?> <br />
 <?php echo Form::label('username', 'Логин') ?>
-<?php echo Form::input('username', HTML::chars(Arr::get($_POST, 'username')),array('placeholder'=>'Введите логин..'))?> 
+<?php echo Form::input('username', HTML::chars(Arr::get(Request::current()->post(), 'username')),array('placeholder'=>'Введите логин..'))?> 
 <?php echo Form::label('password', 'Пароль')?> 
 <?php echo Form::password('password',NULL,array('placeholder'=>'Введите логин..'))?> 
 <label class="checkbox">

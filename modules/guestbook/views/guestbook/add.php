@@ -26,13 +26,13 @@ tinyMCE.init({
 <p>Вы вошли как <strong>Гость</strong>, вам потребуеться дополнительно ввести свое имя и код с картинки. 
 </p>
 <?php echo Form::label('name', 'Введите ваше имя (max 64)') ?>
-<?php echo Form::input('name', HTML::chars(Arr::get($_POST, 'name')),array('placeholder'=>'Введите имя'))?> 
+<?php echo Form::input('name', HTML::chars(Arr::get(Request::current()->post(), 'name')),array('placeholder'=>'Введите имя'))?> 
 <?php echo Form::label('captcha', 'Введите символы с картинки')?> 
 <?php echo Captcha::instance()->render(); ?> <br /> <br />
 <?php echo Form::input('captcha', FALSE,array('size'=>4,'placeholder'=>'Введите код'))?><br /> 
 <?php } ?>
 <?php echo Form::label('content', 'Введите ваше сообщение (max 1024)') ?> 
-<?php echo Form::textarea('content', HTML::chars(Arr::get($_POST, 'content')),array('rows'=>15))?> <br />
+<?php echo Form::textarea('content', NULL,array('rows'=>15))?> <br />
 <?php echo Form::submit('save','Добавить',array('class'=>'btn btn-success'))?>
 </fieldset>
 <?php echo Form::close()?>

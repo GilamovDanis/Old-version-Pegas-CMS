@@ -11,8 +11,8 @@ class Controller_Apanel_Blog_Category extends Controller_AdminPage {
 	
 	$blog_categories=ORM::factory('Blog_Categories');
 	
-	if ($_POST) {
-	$data=Arr::extract($_POST, array('title', 'category_id','content'));
+	if (HTTP_Request::POST==Request::current()->method()) {
+	$data=Arr::extract(Request::current()->post(), array('title', 'category_id','content'));
 	$data=Arr::map('Security::xss_clean', $data);
 			
 	
