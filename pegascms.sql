@@ -128,6 +128,26 @@ CREATE TABLE IF NOT EXISTS `roles_users` (
 
 -- --------------------------------------------------------
 
+CREATE TABLE IF NOT EXISTS `ulogins` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned NOT NULL,
+  `network` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `identity` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `identity` (`identity`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
+--
+-- Ограничения внешнего ключа сохраненных таблиц
+--
+
+--
+-- Ограничения внешнего ключа таблицы `ulogins`
+--
+ALTER TABLE `ulogins`
+  ADD CONSTRAINT `ulogins_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 --
 -- Структура таблицы `users`
 --
